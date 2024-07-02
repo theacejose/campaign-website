@@ -74,7 +74,63 @@
             border-radius: 8px;
             margin-bottom: 20px;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            .container {
+                padding: 15px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            .contact-form input, .contact-form textarea, .contact-form button {
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 20px;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        }
     </style>
+    <script>
+        function validateForm() {
+            var name = document.forms["contactForm"]["name"].value;
+            var email = document.forms["contactForm"]["email"].value;
+            var message = document.forms["contactForm"]["message"].value;
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+            if (name == "" || email == "" || message == "") {
+                alert("All fields must be filled out.");
+                return false;
+            }
+
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
     <div class="hero">
@@ -107,7 +163,7 @@
             <li>Phone: [Your Phone Number]</li>
         </ul>
         <h2>Contact Me:</h2>
-        <form class="contact-form">
+        <form name="contactForm" class="contact-form" onsubmit="return validateForm()">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
             <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
